@@ -1,5 +1,5 @@
 import React from "react"
-import Counter from "./Counter"
+// import Counter from "./Counter"
 import "./css/app.css"
 import {make as Test} from "./Test.bs"
 
