@@ -1,0 +1,17 @@
+rescript = 1
+g_finger := D:\justpay\Re\my-first-rs-app\node_modules\@rescript\react\lib\ocaml\install.stamp
+rule astj
+  command = "C:\Users\Asus\AppData\Roaming\npm\node_modules\bs-platform\win32\bsc.exe"  -bs-v 9.0.2 -bs-jsx 3  -absname -bs-ast -o $out $i
+o src\Main.ast : astj ..\..\src\Main.res
+rule deps
+  command = "C:\Users\Asus\AppData\Roaming\npm\node_modules\bs-platform\win32\bsb_helper.exe" -hash 9cc363fe4df8ac0623dbc7a52fd45a86 $in
+  restat = 1
+o src\Main.d : deps src\Main.ast
+rule mij
+  command = "C:\Users\Asus\AppData\Roaming\npm\node_modules\bs-platform\win32\bsc.exe" -I "src\css" -I "src\fonts" -I src -I "D:\justpay\Re\my-first-rs-app\node_modules\@rescript\react\lib\ocaml"   -bs-package-name my-first-rs-app -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src\Main.cmj src\Main.cmi ..\..\src\Main.bs.js : mij src\Main.ast
+o src\Test.ast : astj ..\..\src\Test.res
+o src\Test.d : deps src\Test.ast
+o src\Test.cmj src\Test.cmi ..\..\src\Test.bs.js : mij src\Test.ast
